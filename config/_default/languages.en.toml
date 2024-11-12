@@ -1,0 +1,25 @@
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "Steve Sansford"
+# copyright = "Copy, _right?_ :thinking_face:"
+
+[params]
+  dateFormat = "2 January 2006"
+
+  # mainSections = ["section1", "section2"]
+  # description = "Adventures in Coding"
+
+[params.author]
+  name = "Steve Sansford"
+  image = "images/author.png"
+  headline = "Coding Padawan"
+  # bio = "A little bit about you"
+  links = [
+     { github = "https://github.com/username" },
+     { instagram = "https://instagram.com/username" },
+     { x-twitter = "https://twitter.com/username" },
+     { youtube = "https://youtube.com/username" },
+  ]
