@@ -1,10 +1,9 @@
----
-title: "Day 0: A Brief History"
-date: 2024-11-12T02:14:32-05:00
-draft: false
-description: ""
-tags: ['#100DaysOfCoding']
----
++++
+date = '2024-11-07T02:52:13-05:00'
+draft = false
+title = 'Day #0: A Brief History Lesson'
+tags = ['#100DaysOfCoding']
++++
 Credit where credit is due. This idea came right from a Tech with Tim video on how to make money from coding. The suggestion was to do a 100-day challenge as the start of a personal brand. So here it is. I'm going to spend the next 100 days learning how to code. The results, both good and bad, will be posted here on my blog for everyone to see.
 
 ### A Brief History Lesson
