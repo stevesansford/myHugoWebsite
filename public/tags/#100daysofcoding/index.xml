@@ -2,17 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>#100DaysOfCoding on Steve Sansford</title>
-    <link>//localhost:1313/tags/%23100daysofcoding/</link>
+    <link>http://localhost:1313/tags/%23100daysofcoding/</link>
     <description>Recent content in #100DaysOfCoding on Steve Sansford</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 07 Nov 2024 02:14:32 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/%23100daysofcoding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Nov 2024 10:10:38 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%23100daysofcoding/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Day 0: A Brief History</title>
-      <link>//localhost:1313/posts/day-0-a-brief-history/</link>
-      <pubDate>Thu, 07 Nov 2024 02:14:32 -0500</pubDate>
-      <guid>//localhost:1313/posts/day-0-a-brief-history/</guid>
+      <title>Day #6: Programming and Coding Are Different</title>
+      <link>http://localhost:1313/posts/day-6-programming-and-coding-are-different/</link>
+      <pubDate>Wed, 13 Nov 2024 10:10:38 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-6-programming-and-coding-are-different/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #5: I&#39;m Finally Caught Up...I Think</title>
+      <link>http://localhost:1313/posts/day-5-im-finally-caught-up/</link>
+      <pubDate>Tue, 12 Nov 2024 21:26:17 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-5-im-finally-caught-up/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #4: I Got Distracted by Hugo!</title>
+      <link>http://localhost:1313/posts/day-4-i-got-sidetracked-by-hugo/</link>
+      <pubDate>Mon, 11 Nov 2024 16:33:56 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-4-i-got-sidetracked-by-hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #3: The Value of Coding Challenges</title>
+      <link>http://localhost:1313/posts/day-3-the-value-of-coding-challenges/</link>
+      <pubDate>Sun, 10 Nov 2024 02:53:00 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-3-the-value-of-coding-challenges/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #2: Coding Tutorials vs. Actually Coding</title>
+      <link>http://localhost:1313/posts/day-2-coding-tutorials-vs-actually-coding/</link>
+      <pubDate>Sat, 09 Nov 2024 02:52:35 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-2-coding-tutorials-vs-actually-coding/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #1: Laying the Groundwork</title>
+      <link>http://localhost:1313/posts/day-1-laying-the-groundwork/</link>
+      <pubDate>Fri, 08 Nov 2024 02:52:13 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-1-laying-the-groundwork/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Day #0: A Brief History Lesson</title>
+      <link>http://localhost:1313/posts/day-0-a-brief-history-lesson/</link>
+      <pubDate>Thu, 07 Nov 2024 02:52:13 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-0-a-brief-history-lesson/</guid>
       <description></description>
     </item>
   </channel>

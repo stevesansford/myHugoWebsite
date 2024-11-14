@@ -14,7 +14,7 @@ title = "Steve Sansford"
 
 [params.author]
   name = "Steve Sansford"
-  image = "images/author.png"
+  image = "images/author.svg"
   headline = "Coding Padawan"
   # bio = "A little bit about you"
   links = [
