@@ -6,8 +6,8 @@ defaultThemeColor = "#FFFFFF"
 
 enableSearch = true
 enableCodeCopy = true
-enableImageLazyLoading = true
-enableImageWebp = true
+enableImageLazyLoading = false
+enableImageWebp = false
 
 # robots = ""
 fingerprintAlgorithm = "sha256"
