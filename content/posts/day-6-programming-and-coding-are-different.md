@@ -65,11 +65,11 @@ I found his recursion explanation concise and easy to follow, so even though I w
 
 ### Audio-Only Might Be a Thing
 
-I've spent enough time studying chess to appreciate the value of visualization. Visualizing the board in your head and following along with moves without is a skill most chess masters have cultivated. It's fascinating to see a grandmaster play [a chess game (or three) blindfolded](https://www.youtube.com/watch?v=xmXwdoRG43U).
+I've spent enough time studying chess to appreciate the value of visualization. Visualizing the board in your head and following along with moves is a skill most chess masters have cultivated. It's fascinating to see a grandmaster play [a chess game (or three) blindfolded](https://www.youtube.com/watch?v=xmXwdoRG43U).
 
->I found myself visualizing the code in my head as it was described in the video. I did not feel I was missing out on anything by not watching the screen.
+>I tried visualizing the code in my head as described in the video. I did not feel I was missing out on anything by not watching the screen.
 
-As I was listening to the audio from this course on my drive today, I found myself visualizing the code in my head as it was described in the video. I did not feel I was missing out on anything by not watching the screen. It was basic stuff being covered, but this might be something I add to my learning process.
+Listening to the audio from this course on my drive today, I tried visualizing the code in my head as described in the video. I did not feel I was missing out on anything by not watching the screen. It was basic stuff being covered, but this might be something I add to my learning process.
 
 ### This Course is The Best I've Found
 
