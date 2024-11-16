@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Steve Sansford</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://stevesansford.com/tags/</link>
     <description>Recent content in Tags on Steve Sansford</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 15 Nov 2024 23:01:57 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://stevesansford.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>#100DaysOfCoding</title>
-      <link>http://localhost:1313/tags/%23100daysofcoding/</link>
+      <link>https://stevesansford.com/tags/%23100daysofcoding/</link>
       <pubDate>Fri, 15 Nov 2024 23:01:57 -0500</pubDate>
-      <guid>http://localhost:1313/tags/%23100daysofcoding/</guid>
+      <guid>https://stevesansford.com/tags/%23100daysofcoding/</guid>
       <description></description>
     </item>
   </channel>
