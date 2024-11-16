@@ -2,80 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Steve Sansford</title>
-    <link>https://stevesansford.com/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Steve Sansford</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 14 Nov 2024 20:01:13 -0500</lastBuildDate>
-    <atom:link href="https://stevesansford.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 23:01:57 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Day #8: Is Everything Defined by Bad Decisions?</title>
+      <link>http://localhost:1313/posts/day-8-i-need-a-better-title/</link>
+      <pubDate>Fri, 15 Nov 2024 23:01:57 -0500</pubDate>
+      <guid>http://localhost:1313/posts/day-8-i-need-a-better-title/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Day #7: Increasing the Difficulty Level</title>
-      <link>https://stevesansford.com/posts/day-7-increasing-the-difficulty-level/</link>
+      <link>http://localhost:1313/posts/day-7-increasing-the-difficulty-level/</link>
       <pubDate>Thu, 14 Nov 2024 20:01:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-7-increasing-the-difficulty-level/</guid>
+      <guid>http://localhost:1313/posts/day-7-increasing-the-difficulty-level/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #6: Programming and Coding Are Different</title>
-      <link>https://stevesansford.com/posts/day-6-programming-and-coding-are-different/</link>
+      <link>http://localhost:1313/posts/day-6-programming-and-coding-are-different/</link>
       <pubDate>Wed, 13 Nov 2024 10:10:38 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-6-programming-and-coding-are-different/</guid>
+      <guid>http://localhost:1313/posts/day-6-programming-and-coding-are-different/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #5: I&#39;m Finally Caught Up...I Think</title>
-      <link>https://stevesansford.com/posts/day-5-im-finally-caught-up/</link>
+      <link>http://localhost:1313/posts/day-5-im-finally-caught-up/</link>
       <pubDate>Tue, 12 Nov 2024 21:26:17 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-5-im-finally-caught-up/</guid>
+      <guid>http://localhost:1313/posts/day-5-im-finally-caught-up/</guid>
       <description></description>
     </item>
     <item>
       <title>Portfolio</title>
-      <link>https://stevesansford.com/portfolio/</link>
+      <link>http://localhost:1313/portfolio/</link>
       <pubDate>Tue, 12 Nov 2024 02:23:46 -0500</pubDate>
-      <guid>https://stevesansford.com/portfolio/</guid>
+      <guid>http://localhost:1313/portfolio/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>https://stevesansford.com/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 12 Nov 2024 02:22:04 -0500</pubDate>
-      <guid>https://stevesansford.com/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #4: I Got Distracted by Hugo!</title>
-      <link>https://stevesansford.com/posts/day-4-i-got-sidetracked-by-hugo/</link>
+      <link>http://localhost:1313/posts/day-4-i-got-sidetracked-by-hugo/</link>
       <pubDate>Mon, 11 Nov 2024 16:33:56 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-4-i-got-sidetracked-by-hugo/</guid>
+      <guid>http://localhost:1313/posts/day-4-i-got-sidetracked-by-hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #3: The Value of Coding Challenges</title>
-      <link>https://stevesansford.com/posts/day-3-the-value-of-coding-challenges/</link>
+      <link>http://localhost:1313/posts/day-3-the-value-of-coding-challenges/</link>
       <pubDate>Sun, 10 Nov 2024 02:53:00 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-3-the-value-of-coding-challenges/</guid>
+      <guid>http://localhost:1313/posts/day-3-the-value-of-coding-challenges/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #2: Coding Tutorials vs. Actually Coding</title>
-      <link>https://stevesansford.com/posts/day-2-coding-tutorials-vs-actually-coding/</link>
+      <link>http://localhost:1313/posts/day-2-coding-tutorials-vs-actually-coding/</link>
       <pubDate>Sat, 09 Nov 2024 02:52:35 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-2-coding-tutorials-vs-actually-coding/</guid>
+      <guid>http://localhost:1313/posts/day-2-coding-tutorials-vs-actually-coding/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #1: Laying the Groundwork</title>
-      <link>https://stevesansford.com/posts/day-1-laying-the-groundwork/</link>
+      <link>http://localhost:1313/posts/day-1-laying-the-groundwork/</link>
       <pubDate>Fri, 08 Nov 2024 02:52:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-1-laying-the-groundwork/</guid>
+      <guid>http://localhost:1313/posts/day-1-laying-the-groundwork/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #0: A Brief History Lesson</title>
-      <link>https://stevesansford.com/posts/day-0-a-brief-history-lesson/</link>
+      <link>http://localhost:1313/posts/day-0-a-brief-history-lesson/</link>
       <pubDate>Thu, 07 Nov 2024 02:52:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/day-0-a-brief-history-lesson/</guid>
+      <guid>http://localhost:1313/posts/day-0-a-brief-history-lesson/</guid>
       <description></description>
     </item>
   </channel>
