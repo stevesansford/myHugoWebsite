@@ -1,0 +1,762 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>Day #11: Building a DNS Server with Python &middot; Steve Sansford</title>
+    <meta name="title" content="Day #11: Building a DNS Server with Python &middot; Steve Sansford" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.6e3902ed9939920e58cbe66e3bc4d4a4c148d3b3243eb5ee01c0565935dcdbbc.css"
+    integrity="sha256-bjkC7Zk5kg5Yy&#43;ZuO8TUpMFI07MkPrXuAcBWWTXc27w="
+  />
+  
+    
+    
+    
+  
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.bb487ad6073790cb02c354ee8c5f8822c42c5513e10bf7a86bbe8f82118cd1fc.js"
+      integrity="sha256-u0h61gc3kMsCw1TujF&#43;IIsQsVRPhC/eoa76PghGM0fw="
+      data-copy="Copy"
+      data-copied="Copied"
+    ></script>
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/coding/day-11-building-python-dns-server/" />
+  
+  
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/coding/day-11-building-python-dns-server/">
+  <meta property="og:site_name" content="Steve Sansford">
+  <meta property="og:title" content="Day #11: Building a DNS Server with Python">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-18T16:08:52-05:00">
+    <meta property="article:modified_time" content="2024-11-18T16:08:52-05:00">
+    <meta property="article:tag" content="#100DaysOfCoding">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Day #11: Building a DNS Server with Python">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Day #11: Building a DNS Server with Python",
+    "headline": "Day #11: Building a DNS Server with Python",
+    
+    
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/posts\/coding\/day-11-building-python-dns-server\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Steve Sansford"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-11-18T16:08:52-05:00",
+    "datePublished": "2024-11-18T16:08:52-05:00",
+    
+    "dateModified": "2024-11-18T16:08:52-05:00",
+    
+    "keywords": ["#100DaysOfCoding"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1929"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/",
+       "name": "Steve Sansford",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "http://localhost:1313/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Day #11 Building a DNS Server With Python",
+       "position": 3
+     }
+   ]
+ }
+  </script>
+
+  
+  <meta name="author" content="Steve Sansford" />
+  
+    
+      <link href="https://github.com/stevesansford" rel="me" />
+    
+      <link href="https://instagram.com/stevesansford" rel="me" />
+    
+      <link href="https://twitter.com/stevesansford" rel="me" />
+    
+      <link href="https://youtube.com/stevesansford" rel="me" />
+    
+  
+  
+  
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X6ZQECQQB5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X6ZQECQQB5');
+  </script>
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="z-40 flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >Steve Sansford</a
+  >
+
+    </div>
+    
+      
+      <label id="menu-button" for="menu-controller" class="block sm:hidden">
+        <input type="checkbox" id="menu-controller" class="hidden" />
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="invisible fixed inset-0 z-30 m-auto h-full w-full cursor-default overflow-auto bg-neutral-100/50 opacity-0 backdrop-blur-sm transition-opacity dark:bg-neutral-900/50"
+        >
+          <ul
+            class="mx-auto flex w-full max-w-7xl list-none flex-col overflow-visible px-6 py-6 text-end sm:px-14 sm:py-10 sm:pt-10 md:px-24 lg:px-32"
+          >
+            <li class="mb-1">
+              <span class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400"
+                ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span></span
+              >
+            </li>
+            
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Home</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/posts/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Blog</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/portfolio/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >Portfolio</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+                
+                <li class="group mb-1">
+                  
+                    <a
+                      href="/about/"
+                      title=""
+                      onclick="close_menu()"
+                      
+                      ><span
+                          class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                          >About</span
+                        >
+                      </a
+                    >
+                  
+                </li>
+              
+              
+                <li class="group mb-1">
+                  <button id="search-button-m0" title="Search (/)">
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    >
+                      <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                    </span>
+                  </button>
+                </li>
+              
+            
+          </ul>
+        </div>
+      </label>
+      
+      <ul class="hidden list-none flex-row text-end sm:flex">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Home</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/posts/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/portfolio/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Portfolio</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              
+                <a
+                  href="/about/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >About</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+          
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
+              <button id="search-button-m1" title="Search (/)">
+                <span
+                  class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                >
+                  <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+                </span>
+              </button>
+            </li>
+          
+
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Day #11: Building a DNS Server with Python
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-11-18 16:08:52 -0500 EST">18 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">10 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This has been an excellent 
+      
+    <a href="/posts/coding/day-9-lets-build-a-dns-server/">project for developing my coding skills</a>. So far, I have a working DNS server that listens for incoming DNS requests and returns a response from a local zone file. I also have a DNS resolver that takes a given domain name, does a recursive search through the DNS hierarchy, returns an IP address, and caches the result for future use.</p>
+<p>Both are good programs, but I need to combine the resolver and the server program so that instead of looking to a local zone file (like a nameserver), the DNS server will use its resolver to perform a proper search. Then, I&rsquo;ll have a functional recursive DNS server.</p>
+<p>Look out 8.8.8.8!</p>
+<h2 id="exercise-7-build-a-dns-server" class="relative group">Exercise #7: Build a DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exercise-7-build-a-dns-server" aria-label="Anchor">#</a></span></h2><p>Exercise #7 from the <a href="https://implement-dns.wizardzines.com/" target="_blank" rel="noreferrer">Implementing DNS in a Weekend</a> webzine series I followed to build the resolver is to add server functionality. Then, instead of using a provided domain name, we can send an actual DNS query to the server and return a properly formatted DNS response to the client.</p>
+<p>It was a grind. At least a ten-hour session, maybe longer. I lost track of the time. But I wasn&rsquo;t able to stop, even though I could have used a break many times. I don&rsquo;t recall the exact steps I followed, but I do recall many of the issues I had to overcome. The whole process culminated in a complete &ldquo;re-write&rdquo; near the end.</p>
+<h3 id="figuring-out-the-best-place-to-start" class="relative group">Figuring out the Best Place to Start <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#figuring-out-the-best-place-to-start" aria-label="Anchor">#</a></span></h3><p>I have two functioning programs. I needed to pick one to start from and incorporate the elements of the second. Adding additional functionality to the server program seemed like the logical approach. The issue is everything in the server program is encoded manually, byte by byte.</p>
+<p>The resolver script, on the other hand, makes use of <code>@dataclasses</code> to store our DNS information. It also benefits from <code>struct</code> functions, which make moving strings to and from bytes much simpler than doing it manually. The functions to process the recursive search are also more complicated than anything in the server program.</p>
+<p>I decided it would be best to begin with the resolver and build the server functionality around it. That may not have been correct.</p>
+<h3 id="step-one-replacing-the-supplied-domain-with-a-dns-request" class="relative group">Step One: Replacing the Supplied Domain with a DNS Request <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-one-replacing-the-supplied-domain-with-a-dns-request" aria-label="Anchor">#</a></span></h3><p>It was a simple matter to use <code>socket</code> to create a listener on <code>localhost:5053</code> for the DNS server. Then I could <code>dig @localhost -p 5053</code> and the DNS query would be received by the server.</p>
+<h4 id="problem-1-the-client-sends-dns-querys-as-byte-strings" class="relative group">Problem #1: The Client Sends DNS Querys as Byte Strings <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-1-the-client-sends-dns-querys-as-byte-strings" aria-label="Anchor">#</a></span></h4><p>It went downhill right from the beginning. The resolver assumes an input in the form of a simple string (<code>google.com</code>). Our client is sending a complete query as a byte string:</p>
+<pre tabindex="0"><code>b&#39;K\xdb\x01 \x00\x01\x00\x00\x00\x00\x00\x01\x06google\x03com\x00\x00\x01\x00\x01\x00\x00)\x10\x00\x00\x00\x00\x00\x00\x00&#39;
+</code></pre><p>I needed to parse the DNS request from the client to get the information I needed to pass to the resolver function. As the resolver already had a function to parse the response from the upstream nameserver, I thought I&rsquo;d just use that.</p>
+<p>I&rsquo;m not sure I&rsquo;ve recovered from that particular mistake. Remember 
+      
+    <a href="/posts/coding/day-8-is-everything-defined-by-bad-choices/">what I said about bad decisions</a>? This started me down the trail of modifying all my perfectly good functions until nothing worked right, and the code base was a mess. But more on that later.</p>
+<p>After my total &ldquo;re-write,&rdquo; I ended up with two similar functions: <code>parse_client_response_packet()</code> and the original, which I renamed to <code>parse_server_response_packet()</code>. While similar, they process the data in different ways.</p>
+<pre tabindex="0"><code>def parse_client_request_packet(data):
+    reader = BytesIO(data)  # allow us to iterate over the bytestring # read header bytes and unpack
+    items = struct.unpack(&#34;!HHHHHH&#34;, reader.read(12))
+    header = DNSHeader(*items)  # build header
+    name = decode_name(reader)  # read the requested URL
+    data = reader.read(4)  # read the bytes containing the type and class
+    
+    # format type and class for question
+    type_, class_ = struct.unpack(&#34;!HH&#34;, data)
+    
+    # build the DNS client question
+    question = DNSQuestion(name, type_, class_)
+
+    return header, question
+</code></pre><p>You can also see the benefit of the <code>struct</code> function in Python. It&rsquo;s simple to pass it a format and a byte string and have it return a list of items we can pass to our <code>DNSHeader</code> object for further processing. We now have populated objects with all the information sent from the client, including the domain name to pass to the resolver.</p>
+<h3 id="step-two-resolve-the-domain-name" class="relative group">Step Two: Resolve the Domain Name <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-two-resolve-the-domain-name" aria-label="Anchor">#</a></span></h3><p>Thanks to our function above, we now have the information we need to submit to our existing resolver function:</p>
+<pre tabindex="0"><code>ip_address, ttl = resolve(dns_question.name, dns_question.type_)
+</code></pre><p>It requires two arguments: the domain name and the record type. Both of these are contained in our <code>dns_question</code> object. The resolver returns the <code>ip_address</code> and the <code>ttl</code>.</p>
+<p>I want to dive further into the functionality of the resolver, but I&rsquo;m honestly not clear on how it worked before the rewrite. It could benefit from its own post (and maybe it&rsquo;ll get one or seventeen). But I am clear on the problems I had getting it to work.</p>
+<h4 id="problems-with-the-resolver" class="relative group">Problems with the Resolver <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problems-with-the-resolver" aria-label="Anchor">#</a></span></h4><p>It was really one problem. I was trying to pass bytes of data to functions that were designed to work with strings. It was a mess. I&rsquo;d just spent the last hour or so messing them up even more, trying to parse the request byte string. My functions weren&rsquo;t processing anything correctly.</p>
+<p>I also struggled to understand the problem with the byte strings because I couldn&rsquo;t read them. I know the problem stemmed from working with DNS client/server communications in bytes but storing and manipulating the data in my data classes, which use integers and strings.</p>
+<p>All the back-and-forth conversion was a disaster. After four hours of banging my head against the wall, I needed a new plan. And some help.</p>
+<h3 id="step-three-the-rewrite-and-chatgpt" class="relative group">Step Three: The Rewrite (and ChatGPT) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-three-the-rewrite-and-chatgpt" aria-label="Anchor">#</a></span></h3><p>I had a sense of the problem. I know it was caused because I approached the integration wrong. I needed to unify the two sections in bytes. That meant I needed a method to convert my data classes into bytes. That would make it easier to populate them with the parsed DNS data and vice versa.</p>
+<h4 id="modify-the-dataclasses-with-a-__bytes__-method" class="relative group">Modify the Dataclasses with a <strong>bytes</strong> method <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#modify-the-dataclasses-with-a-__bytes__-method" aria-label="Anchor">#</a></span></h4><p>I had been consulting with ChatGPT while researching data storage methods for my cache. When I asked it how to serialize a custom data class object in Python for file storage, it suggested using <code>pickle</code> and storing the data as a byte string.</p>
+<p>That is fine for file storage, but the problem when I applied the same process in an effort to convert my class objects into byte string was that <code>pickle</code> also includes the information necessary to deserialize the object, which results in a byte string that is completely useless.</p>
+<p>When I asked ChatGPT about this issue, it agreed that <code>pickle</code> is not the right choice:</p>
+<blockquote>
+<p>You&rsquo;re correct that pickle is not suitable for encoding data where the exact structure and byte count matter, such as in DNS response encoding. Instead, you can implement a custom <strong>bytes</strong> method that converts the object to a compact binary format, using Python&rsquo;s struct module or manual encoding.</p>
+</blockquote>
+<p>Ahh&hellip;there it was. The solution to the problem. With ChatGPTs help I was able to add custom <code>__bytes__</code> methods to my <code>dataclasses</code>:</p>
+<pre tabindex="0"><code>@dataclass
+class DNSQuestion:
+    name: str
+    type_: int
+    class_: int
+
+    def __bytes__(self):
+        name_binary = b&#39;&#39;.join(len(label).to_bytes(
+            1, &#39;big&#39;) + label.encode(&#39;utf-8&#39;) for label in self.name.split(&#39;.&#39;))
+        name_binary += b&#39;\x00&#39;
+        return name_binary + struct.pack(&#34;!HH&#34;, self.type_, self.class_)
+</code></pre><p>Now that I had a way to easily convert the <code>dataclasses</code> to bytes, I could proceed with my rewrite.</p>
+<h4 id="starting-back-at-the-beginning" class="relative group">Starting Back at the Beginning <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#starting-back-at-the-beginning" aria-label="Anchor">#</a></span></h4><p>I had the answers I needed, but I had no idea where to use them. I knew the best thing to do would be to start over. Not from a blank file, but from something just as effective. I commented out every line of code in my script and I started from the beginning.</p>
+<p>I don&rsquo;t recall all the changes I made. As I worked my way through the code line by line, I uncommented and updated every line necessary to take advantage of the new classes.</p>
+<p>I only uncommented functions as they were called and never the entire function. Just that part of it that did what I needed. I deleted what seemed like dozens of lines of code. I know several functions were removed completely.</p>
+<p>It took a couple of hours, but starting with a byte string for a <code>google.com</code> DNS request, I verified the response byte string with ChatGPT at every step. I noted where it said the packet was malformed and corrected it. Line by line, I worked through my script.</p>
+<p>When I was done, the server would accept a DNS request from a client and return an IP address to the console. All that was left now was to encode a proper response and return it to the client.</p>
+<h3 id="step-four-building-the-response" class="relative group">Step Four: Building the Response <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-four-building-the-response" aria-label="Anchor">#</a></span></h3><p>There&rsquo;s a better way to do this, but after two solid days of coding, I just wanted to get it working. I attempted to create another <code>dataclass</code> object to contain the response. That would give it a similar structure to the rest of the program, but I couldn&rsquo;t get it to create a properly formed packet. There were errors.</p>
+<p>I took a shortcut and created a proper response using <code>struct</code> and some hard-coded values. This was sufficient to return a proper <code>A</code> record to the client.</p>
+<pre tabindex="0"><code>def build_response(data):
+    dns_header, dns_question = parse_client_request_packet(
+        data)  # parse client DNS request
+    # attempt to resolve the client&#39;s request
+    ip_address, ttl = resolve(dns_question.name, dns_question.type_)
+    name = dns_question.name
+    data = bytes(map(int, ip_address.split(&#39;.&#39;)))
+
+    # Todo:  refactor and remove hardcoded values
+    header = struct.pack(&#34;!HHHHHH&#34;, dns_header.id, 0x8180, 1, 1, 0, 0)
+    question = encode_domain_name(
+        name) + struct.pack(&#34;!HH&#34;, dns_question.type_, dns_question.class_)
+    answer = encode_domain_name(
+        name) + struct.pack(&#34;!HHIH&#34;, dns_question.type_, dns_question.class_, ttl, 4) + data
+
+    return header + question + answer    
+</code></pre><p>The biggest issue I had was encoding the IP address onto the end of the question string. No matter how I tried, <code>dig</code> kept complaining that my response stiring was malformed and contained extra characters.</p>
+<p>I had to ask ChatGPT for help. it provided this gem that was the key to proper encoding:</p>
+<pre tabindex="0"><code> data = bytes(map(int, ip_address.split(&#39;.&#39;)))
+</code></pre><p>Everything up to the <code>#Todo</code> comment is how I want it. The three lines that follow are me building a DNS response using the resolved IP address and some hardcoded integers. I want to rebuild this part of the function to be more dynamic. DNS requests won&rsquo;t always be for a single <code>A</code> record. There is more work to do.</p>
+<h3 id="step-five-resolving-a-dns-query" class="relative group">Step Five: Resolving a DNS Query <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-five-resolving-a-dns-query" aria-label="Anchor">#</a></span></h3><p>Success at last. I started the server and sent it a query from my terminal using:</p>
+<pre tabindex="0"><code>dig @localhost -p 5053 google.com
+</code></pre><p>The response was exactly what I wanted to see:</p>
+<pre tabindex="0"><code>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; @localhost -p 5053 google.com
+; (2 servers found)
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 46520
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;google.com.			IN	A
+
+;; ANSWER SECTION:
+google.com.		300	IN	A	142.250.191.238
+
+;; Query time: 185 msec
+;; SERVER: 127.0.0.1#5053(127.0.0.1)
+;; WHEN: Mon Nov 18 19:19:12 EST 2024
+;; MSG SIZE  rcvd: 54
+</code></pre><p>A perfectly formed DNS response from 
+      
+    <a href="/portfolio/">my Python DNS server</a>.</p>
+<p>There is so much more work to do on this project. Plus, I want to create a series of posts going over the function in detail once it&rsquo;s complete. The problem is it might be one of those programs that is never complete. 
+      
+    <a href="/posts/coding/day-0-a-brief-history-lesson/">Like a chess engine</a>. A perpetual programming project, good for a lifetime of learning or not. Either way,</p>
+<p>There are only 89 more days to go&hellip;</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/coding/day-10-second-day-dns-python-coding/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Day #10: My Second Day of DNS Coding in Python</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-17 21:51:51 -0500 EST">17 November 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            Steve Sansford
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+        <div
+          class="me-14 cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="Switch to dark appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="Switch to light appearance"
+            >
+              <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+            </div>
+          </button>
+        </div>
+      
+    </div>
+  </div>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 z-50 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+>
+  <div
+    id="search-modal"
+    class="top-20 mx-auto flex min-h-0 w-full max-w-3xl flex-col rounded-md border border-neutral-200 bg-neutral shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex flex-none items-center justify-between px-2">
+      <form class="flex min-w-0 flex-auto items-center">
+        <div class="flex h-8 w-8 items-center justify-center text-neutral-400">
+          <span class="icon relative inline-block px-1 align-text-bottom"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="mx-1 flex h-12 flex-auto appearance-none bg-transparent focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex h-8 w-8 items-center justify-center text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto overflow-auto px-2">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

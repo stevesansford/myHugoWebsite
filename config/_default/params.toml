@@ -27,7 +27,7 @@ fingerprintAlgorithm = "sha256"
 [homepage]
   layout = "profile" # valid options: page, profile, custom
   showRecent = true
-  recentLimit = 10
+  recentLimit = 100
 
 [article]
   showDate = true
@@ -54,7 +54,7 @@ fingerprintAlgorithm = "sha256"
   showTableOfContents = false
   showTaxonomies = false
   groupByYear = true
-  paginationWidth = 1
+  paginationWidth = 2
 
 [sitemap]
   excludedKinds = ["taxonomy", "term"]
