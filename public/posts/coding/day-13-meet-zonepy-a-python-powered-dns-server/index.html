@@ -17,8 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Categories &middot; Steve Sansford</title>
-    <meta name="title" content="Categories &middot; Steve Sansford" />
+  <title>Day #13: Meet ZonePy: A Python-Powered DNS Server &middot; Steve Sansford</title>
+    <meta name="title" content="Day #13: Meet ZonePy: A Python-Powered DNS Server &middot; Steve Sansford" />
   
   
   
@@ -82,8 +82,7 @@
   
   
   
-  <link rel="canonical" href="https://stevesansford.com/categories/" />
-  <link rel="alternate" type="application/rss+xml" href="/categories/index.xml" title="Steve Sansford" />
+  <link rel="canonical" href="https://stevesansford.com/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/" />
   
   
     
@@ -98,18 +97,74 @@
   
   
   
-  <meta property="og:url" content="https://stevesansford.com/categories/">
+  <meta property="og:url" content="https://stevesansford.com/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/">
   <meta property="og:site_name" content="Steve Sansford">
-  <meta property="og:title" content="Categories">
+  <meta property="og:title" content="Day #13: Meet ZonePy: A Python-Powered DNS Server">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-20T19:01:15-05:00">
+    <meta property="article:modified_time" content="2024-11-20T19:01:15-05:00">
+    <meta property="article:tag" content="#100DayaOfCoding">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Categories">
+  <meta name="twitter:title" content="Day #13: Meet ZonePy: A Python-Powered DNS Server">
 
   
-  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Day #13: Meet ZonePy: A Python-Powered DNS Server",
+    "headline": "Day #13: Meet ZonePy: A Python-Powered DNS Server",
+    
+    
+    "inLanguage": "en",
+    "url" : "https:\/\/stevesansford.com\/posts\/coding\/day-13-meet-zonepy-a-python-powered-dns-server\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Steve Sansford"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-11-20T19:01:15-05:00",
+    "datePublished": "2024-11-20T19:01:15-05:00",
+    
+    "dateModified": "2024-11-20T19:01:15-05:00",
+    
+    "keywords": ["#100DayaOfCoding"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "746"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "https://stevesansford.com/",
+       "name": "Steve Sansford",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "https://stevesansford.com/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Day #13 Meet Zone Py a Python Powered DNS Server",
+       "position": 3
+     }
+   ]
+ }
+  </script>
 
   
   <meta name="author" content="Steve Sansford" />
@@ -382,14 +437,150 @@
     <div class="relative flex grow flex-col">
       <main id="main-content" class="grow">
         
-  <header>
-    
-    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Categories</h1>
-  </header>
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Day #13: Meet ZonePy: A Python-Powered DNS Server
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
   
-  <section class="-mx-2 flex flex-wrap overflow-hidden">
+  
+
+
+
+  
+
+  
+  
     
-  </section>
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-11-20 19:01:15 -0500 EST">20 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">4 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>Yep. I gave it a name. <strong>ZonePy</strong>. I solved the last issue preventing me from using it as the primary DNS server for my MacBook. After it ran crash-free today for over two hours, I thought it should have a name. ChatGPT suggested a bunch, but ZonePy was my favourite (and the <a href="https://zonepy.com" target="_blank" rel="noreferrer">domain was available</a>).</p>
+<p>There&rsquo;s still a long way to go and much to learn about DNS and Python, but I&rsquo;m excited that I have a usable server. The issue I sorted out today was a problem where the program would hang waiting for a response from an upstream DNS server.</p>
+<p>For example, if a nameserver failed to respond, the program would get stuck. That&rsquo;s why most domains have multiple nameservers for redundancy. One of the limitations of ZonePY is it only processes the first record. It ignores redundancy, but I intend to make that my next project (I think).</p>
+<h2 id="dealing-with-an-unresponsive-dns-server" class="relative group">Dealing with an Unresponsive DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dealing-with-an-unresponsive-dns-server" aria-label="Anchor">#</a></span></h2><p>I can&rsquo;t say what&rsquo;s causing the timeout. It could very well be my Starlink ISP. I&rsquo;m still running a Gen 1 dishy, and it&rsquo;s had some bumps. The motors are broken, and it&rsquo;s stuck in a single orientation. There are good days and bad. I could upload my code to a cloud server (which I may do), and that might resolve the timeouts.</p>
+<blockquote>
+<p>I&rsquo;m still running a Gen 1 dishy and it&rsquo;s had some bumps. The motors are broken, and it&rsquo;s stuck in a single orientation.</p>
+</blockquote>
+<p>Regardless, even if that is my issue, non-responsive servers are going to happen, so my program needs to have a mechanism to deal with it. I have two choices: <code>socket.settimeout()</code> or <code>asyncio</code>. For this quick fix, I went with the timeout option on <code>socket</code>.</p>
+<p>This was the code that caused the hangup. As you can see, there is no mechanism to deal with a lack of response from the <code>nameserver</code>. The program just sits and waits.</p>
+<pre tabindex="0"><code>logging.debug(f&#34;Query sent to {nameserver}&#34;)
+
+sock.sendto(query, (nameserver, 53))  # open connection to the nameserver
+
+response, _ = sock.recvfrom(512)
+</code></pre><p>I added a one-second timeout. If ZonePy doesn&rsquo;t receive a response from the upstream server in under one second, it returns an <code>NXDOMAIN</code>. Here&rsquo;s the updated code:</p>
+<pre tabindex="0"><code>try:
+    logging.debug(f&#34;Query sent to {nameserver}&#34;)
+
+    sock.settimeout(1)
+    sock.sendto(query, (nameserver, 53))  # open connection to the nameserver
+
+    response, _ = sock.recvfrom(512)
+    logging.debug(f&#34;Response received from {nameserver}&#34;)
+except socket.timeout:
+    logging.warning(f&#34;Response from {nameserver} timed out.&#34;)
+    response = None
+finally:
+    sock.close()
+</code></pre><p>It&rsquo;s a temporary solution, as my long-term plan is to make the resolver fully asynchronous so it can handle a higher volume of DNS queries. It will also asynchronously query all possible nameservers from a given record, which will also take care of an unresponsive server.</p>
+<p>This step will probably come after I create a better cache. I&rsquo;m <a href="https://www.youtube.com/watch?v=G1rOthIU-uo" target="_blank" rel="noreferrer">looking at Redis</a>, and even if it&rsquo;s not the right choice, I&rsquo;m interested in learning more about how it works. After all, that&rsquo;s <a href="/day-9-lets-build-a-dns-server">the point of this DNS server project</a>. To learn programming and coding.</p>
+<blockquote>
+<p>I really want to rewrite this server in Haskell and Rust just for fun.</p>
+</blockquote>
+<h2 id="running-zonepy-as-my-primary-dns-server" class="relative group">Running ZonePy as My Primary DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#running-zonepy-as-my-primary-dns-server" aria-label="Anchor">#</a></span></h2><p>After this change was implemented, I ran ZonePy on port 53 and pointed my laptop to 127.0.0.1 for its DNS. It ran all afternoon without fault while I did all manner of work tasks. It did feel sluggish at times, but whether that&rsquo;s related to my extremely un-optimized DNS server or my struggling Starlink connection, I do not know.</p>
+<h3 id="building-a-perf-test-module" class="relative group">Building a Perf-Test Module <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#building-a-perf-test-module" aria-label="Anchor">#</a></span></h3><p>Now that the server is functional, I&rsquo;m going to build a performance test (maybe as a module in the program) so I can test the server against a list of domains and monitor resolution times. It&rsquo;ll be helpful to isolate any potential ISP issues I may be having.</p>
+<p>It will also let me quantify changes to the caching, asynchronous operations, hosting environments, code optimizations and probably a few other things. If I can establish a baseline by resolving a list of 1,000 or so domain names, I can get an average resolution time per domain. I don&rsquo;t know if this is how the pros do it, but for my learning exercise, it&rsquo;ll be sufficient for this phase of my program.</p>
+<h2 id="next-steps-for-the-zonepy-dns-server" class="relative group">Next Steps for the ZonePy DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#next-steps-for-the-zonepy-dns-server" aria-label="Anchor">#</a></span></h2><p>In no particular order: return multiple records, improve the cache, implement asynchronous operations, add proper support for <code>IPv6</code> and <code>HTTPS</code> records, refactor and improve the code. I&rsquo;m sure there are many more things I need.</p>
+<p>Good thing there&rsquo;s still 87 more days to go&hellip;</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/coding/day-12-an-almost-useable-dns-server/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Day #12: An Almost Useable DNS Server</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-19 20:42:12 -0500 EST">19 November 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
 
       </main>
       

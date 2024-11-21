@@ -17,8 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Categories &middot; Steve Sansford</title>
-    <meta name="title" content="Categories &middot; Steve Sansford" />
+  <title>Day #12: An Almost Useable DNS Server &middot; Steve Sansford</title>
+    <meta name="title" content="Day #12: An Almost Useable DNS Server &middot; Steve Sansford" />
   
   
   
@@ -82,8 +82,7 @@
   
   
   
-  <link rel="canonical" href="https://stevesansford.com/categories/" />
-  <link rel="alternate" type="application/rss+xml" href="/categories/index.xml" title="Steve Sansford" />
+  <link rel="canonical" href="https://stevesansford.com/posts/coding/day-12-an-almost-useable-dns-server/" />
   
   
     
@@ -98,18 +97,75 @@
   
   
   
-  <meta property="og:url" content="https://stevesansford.com/categories/">
+  <meta property="og:url" content="https://stevesansford.com/posts/coding/day-12-an-almost-useable-dns-server/">
   <meta property="og:site_name" content="Steve Sansford">
-  <meta property="og:title" content="Categories">
+  <meta property="og:title" content="Day #12: An Almost Useable DNS Server">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-19T20:42:12-05:00">
+    <meta property="article:modified_time" content="2024-11-19T20:42:12-05:00">
+    <meta property="article:tag" content="#100DaysOfCoding">
+    <meta property="article:tag" content="Python">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Categories">
+  <meta name="twitter:title" content="Day #12: An Almost Useable DNS Server">
 
   
-  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "Day #12: An Almost Useable DNS Server",
+    "headline": "Day #12: An Almost Useable DNS Server",
+    
+    
+    "inLanguage": "en",
+    "url" : "https:\/\/stevesansford.com\/posts\/coding\/day-12-an-almost-useable-dns-server\/",
+    "author" : {
+      "@type": "Person",
+      "name": "Steve Sansford"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-11-19T20:42:12-05:00",
+    "datePublished": "2024-11-19T20:42:12-05:00",
+    
+    "dateModified": "2024-11-19T20:42:12-05:00",
+    
+    "keywords": ["#100DaysOfCoding","Python"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1255"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "https://stevesansford.com/",
+       "name": "Steve Sansford",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "https://stevesansford.com/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "Day #12 an Almost Useable DNS Server",
+       "position": 3
+     }
+   ]
+ }
+  </script>
 
   
   <meta name="author" content="Steve Sansford" />
@@ -382,14 +438,191 @@
     <div class="relative flex grow flex-col">
       <main id="main-content" class="grow">
         
-  <header>
-    
-    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Categories</h1>
-  </header>
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Day #12: An Almost Useable DNS Server
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
   
-  <section class="-mx-2 flex flex-wrap overflow-hidden">
+  
+
+
+
+  
+
+  
+  
     
-  </section>
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-11-19 20:42:12 -0500 EST">19 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">6 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>I took a much-needed break from <a href="/day-9-lets-build-a-dns-server">my Python DNS server project</a> yesterday. My coding brain needed a rest after the two-day grind. I also needed time to finish up the last couple of blog posts. That doesn&rsquo;t mean I didn&rsquo;t spend time thinking about the DNS server. I got back to coding again today to add a few new features.</p>
+<p>I did add a small bit of code yesterday to provide support for <code>SOA</code> records. It&rsquo;s not something I would have considered, but interestingly enough, the <code>howcode.org</code> domain <a href="https://www.youtube.com/watch?v=HdrPWGZ3NRo&amp;list=PLBOh8f9FoHHhvO5e5HF_6mYvtZegobYX2" target="_blank" rel="noreferrer">from the first server tutorial</a> returns an <code>SOA</code> record when it&rsquo;s recursively searched. They&rsquo;re handled similarly to <code>CNAME</code>, so it&rsquo;s a quick fix.</p>
+<h2 id="moving-on-from-print" class="relative group">Moving on From print() <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#moving-on-from-print" aria-label="Anchor">#</a></span></h2><p>Like most beginners, the first built-in function I learned was <code>print()</code>. It&rsquo;s incredibly useful and easy to use, which is why my code to this point is littered with <code>print()</code> statements. I needed some way to track my way through the program. A lot is going on.</p>
+<pre tabindex="0"><code>import logging
+
+logging.basicConfig(format=&#34;{asctime} - {levelname} - {message}&#34;, style=&#34;{&#34;, datefmt=&#34;%Y-%m-%d %H:%M&#34;, level=logging.INFO)
+</code></pre><p>It was time to switch to <code>logging</code>. I added the necessary <code>import</code> statement, built a basic format string and changed all my <code>print()</code> statements to some variation of <code>logging.x()</code> depending on the situation.</p>
+<p>I also added a few extra <code>DEBUG</code> and <code>INFO</code> lines to get a nice smooth output when running the program.</p>
+<h2 id="updating-the-type-tuple-for-new-record-types" class="relative group">Updating the TYPE Tuple for New Record Types <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#updating-the-type-tuple-for-new-record-types" aria-label="Anchor">#</a></span></h2><p>When I added the <code>SOA</code> record yesterday to the <code>TYPE</code> tuple, I realized that it worked for the original record types which are indexed from 1 to 16:</p>
+<pre tabindex="0"><code>TYPE = (&#39;&#39;, &#39;A&#39;, &#39;NS&#39;, &#39;MD&#39;, &#39;MF&#39;, &#39;CNAME&#39;, &#39;SOA&#39;, &#39;MB&#39;, &#39;MG&#39;,
+        &#39;MR&#39;, &#39;NULL&#39;, &#39;WKS&#39;, &#39;PTR&#39;, &#39;HINFO&#39;, &#39;MINFO&#39;, &#39;MX&#39;, &#39;TXT&#39;)
+</code></pre><p>But now many of those are obsolete, and I was already getting errors from <code>AAAA</code> and <code>HTTPS</code> record requests. Their indexes are 28 and 65, respectively. I would end up with a lot of blank elements in my very long tuple and with more than a few useless record types.</p>
+<pre tabindex="0"><code>TYPE = {&#39;A&#39;: 1, &#39;NS&#39;: 2, &#39;CNAME&#39;: 5, &#39;SOA&#39;: 6, &#39;TXT&#39;: 16, &#39;AAAA&#39;: 28, &#39;HTTPS&#39;: 65}
+</code></pre><p>I figured if I swapped to a dictionary, I could use a <code> key: value</code> pair only for the record types that I needed. It&rsquo;s a much cleaner implementation. Now, I can just call the dictionary by the key (<code>TYPE['CNAME']</code>), and the correct integer will be returned.</p>
+<h2 id="my-almost-useable-python-dns-server" class="relative group">My Almost Useable Python DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#my-almost-useable-python-dns-server" aria-label="Anchor">#</a></span></h2><p>In the last exercise, Julia Evans suggests trying out <a href="https://zonepy.com" target="_blank" rel="noreferrer">the Python DNS server</a> by pointing the DNS on your local machine to the program. That sounded like fine. Well aware that things would break, I thought, what better way to test my new DNS server than to start using it to resolve real DNS requests?</p>
+<p>I changed the <code>SERVER_PORT</code> variable to <code>53</code> (standard DNS port) and adjusted my DNS settings on my MacBook to point to <code>127.0.0.1</code>.</p>
+<p>I then spent the next three hours chasing down bugs and refactoring code to smooth out the process. The biggest issue I had was the original code caused the program to process some <code>CNAME</code> records as <code>NS</code> records in situations where there is a <code>CNAME</code> record in the <code>answers</code> section and an <code>NS</code> record in the <code>authorities</code> section. This mostly happened with Apple and Amazon domains. Good thing those aren&rsquo;t important.</p>
+<pre tabindex="0"><code>elif cname := get_cname(response):
+    logging.debug(f&#34;Resolving [CNAME] for [{cname}]&#34;)
+    return resolve(cname, 1)
+elif nsIP := get_nameserver_ip(response):
+    nameserver = nsIP
+elif ns_domain := get_nameserver(response):
+    logging.debug(f&#34;Resolving [NS] for [{ns_domain}]&#34;)
+    nameserver, _ = resolve(ns_domain, 1)
+</code></pre><p>The simple fix was to reorder the <code> if/elif</code> statement so that <code>CNAME</code> records were processed first. Full disclosure: this simple fix took me hours to find. That avoided the false positive triggered by the <code>NS</code> condition. So far, that has resolved the infinite loops I was experiencing.</p>
+<h3 id="quick-fix-sort-of-for-aaaa-and-https-requests" class="relative group">Quick Fix (Sort Of) for AAAA and HTTPS Requests <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#quick-fix-sort-of-for-aaaa-and-https-requests" aria-label="Anchor">#</a></span></h3><p>The other issue that broke the code quite often was requests from my MacBook <code>IPv6 AAAA</code> and <code>Type 65 HTTPS</code> requests. I now had support in my <code>TYPE</code> variable for these two record types, but I&rsquo;m not yet ready to tackle those features. Both of those will be big tasks.</p>
+<p>For now, I came up with a shortcut. There are going to be times when the resolver cannot successfully resolve an IP address. Maybe it&rsquo;s invalid. Maybe there&rsquo;s a network issue or some sort of filtering in place that prevents proper resolution. In those cases, a DNS server will return an <code>RCODE = 3</code> in the header flags, known as an <code>NXDOMAIN</code>. It tells the requester that no records for this domain can be found.</p>
+<blockquote>
+<p>There are going to be times when the resolver cannot successfully resolve an IP address.</p>
+</blockquote>
+<p>Neither <code>AAAA</code> nor <code>HTTPS</code> requests are required in any cases I am aware of. Most computers will request those records, along with a standard <code>A</code> record. If the <code>AAAA</code> and/or <code>HTTPS</code> requests are returned to the client with an <code>NXDOMAIN</code> the client will rely on the <code>A</code> record and establish the connection over <code>IPv4</code>. This is a simplification, but it&rsquo;s sufficient for now.</p>
+<pre tabindex="0"><code>def create_nx_domain_packet(dns_header, dns_question):
+    header = struct.pack(&#34;!HHHHHH&#34;, dns_header.id, 0b1000010000000011, 0, 0, 0, 0)
+    question = encode_domain_name(
+        dns_question.name) + struct.pack(&#34;!HH&#34;, dns_question.type_, dns_question.class_)
+
+    return header + question
+</code></pre><p>I created a function to return a properly formatted DNS response with a <code>QD_COUNT</code> equal to 0 and a header flag with <code>3</code> for the <code>RCODE</code>. If the response from the resolver comes back empty, which I&rsquo;ve forced in the event of an <code>AAAA</code> or <code>HTTPS</code> request, the server returns the <code>NXDOMAIN</code> packet to the client. This prevents the program from crashing and it continues to accept and process DNS requests.</p>
+<p>The DNS server is now able to function as the primary resolver for my MacBook:</p>
+<pre tabindex="0"><code>2024-11-19 20:39 - INFO - Resolved [a.gslb.aaplimg.com] to [17.253.201.8] via Local Cache
+2024-11-19 20:39 - INFO - Querying [17.253.201.8] for [kt-prod.v.aaplimg.com]
+2024-11-19 20:39 - INFO - Resolved [kt-prod.v.aaplimg.com] to [17.138.175.254] via Recursive Search.
+2024-11-19 20:39 - INFO - Resolved [kt-prod.ess.apple.com] to [17.138.175.254] via Recursive Search.
+2024-11-19 20:39 - INFO - Request processed in: 433ms
+2024-11-19 20:39 - INFO - Querying [198.41.0.4] for [kt-prod.ess.apple.com]
+2024-11-19 20:39 - INFO - Querying [192.41.162.30] for [kt-prod.ess.apple.com]
+2024-11-19 20:39 - INFO - Querying [17.253.200.1] for [kt-prod.ess.apple.com]
+</code></pre><h3 id="i-also-added-a-timer" class="relative group">I Also Added a Timer <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#i-also-added-a-timer" aria-label="Anchor">#</a></span></h3><p>I wanted to track the time the resolver took to complete the process. I used the <code> time.time_perf()</code> function in Python to measure the elapsed time from when the request was received until the moment the response was sent to the client. This will allow me to track the impact on performance as I change and update the code. I wonder if Redis would be faster?</p>
+<pre tabindex="0"><code>start_time = time.perf_counter()
+# attempt to resolve the client&#39;s request
+response = resolve(dns_question.name, dns_question.type_)
+# record time
+elapsed_time = round((time.perf_counter() - start_time) * 1000)
+</code></pre><p>I was also pleased to see that while the recurring searches took 400 to 600ms on average, the local cache returned its records in &lt; 20ms. That&rsquo;s why we cache records.</p>
+<h2 id="one-last-big-hurdle-to-overcome" class="relative group">One Last Big Hurdle to Overcome <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#one-last-big-hurdle-to-overcome" aria-label="Anchor">#</a></span></h2><p>There are probably many more than one, but I am aware of only one right now. If the DNS server sends a query to an upstream server and that connection times out, the server will crash. This is the only bug I know preventing me from using my server as DNS on my MacBook.</p>
+<p>I suspect there may be some solution involving asynchronous functions, but tracking down 
+      
+    <a href="/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/">the exact issue and coming up with a resolution</a> is a project for another day, which is fine by me.</p>
+<p>Because there are still 88 more days to go&hellip;</p>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+      
+
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="group flex" href="/posts/coding/day-11-building-python-dns-server/">
+              <span
+                class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&larr;</span
+                ><span class="ltr:hidden rtl:inline">&rarr;</span></span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Day #11: Building a DNS Server with Python</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-18 16:08:52 -0500 EST">18 November 2024</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="group flex text-right" href="/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Day #13: Meet ZonePy: A Python-Powered DNS Server</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-20 19:01:15 -0500 EST">20 November 2024</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+                ><span class="ltr:inline rtl:hidden">&rarr;</span
+                ><span class="ltr:hidden rtl:inline">&larr;</span></span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
 
       </main>
       
