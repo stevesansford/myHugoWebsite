@@ -17,8 +17,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FFFFFF" />
   
-  <title>Day #11: Building a DNS Server with Python &middot; Steve Sansford</title>
-    <meta name="title" content="Day #11: Building a DNS Server with Python &middot; Steve Sansford" />
+  <title>Day #14: Fixing a Useless DNS Cache &middot; Steve Sansford</title>
+    <meta name="title" content="Day #14: Fixing a Useless DNS Cache &middot; Steve Sansford" />
   
   
   
@@ -82,7 +82,7 @@
   
   
   
-  <link rel="canonical" href="uild/posts/coding/day-11-building-python-dns-server/" />
+  <link rel="canonical" href="uild/posts/coding/day-14-fixing-a-useless-dns-cache/" />
   
   
     
@@ -97,19 +97,19 @@
   
   
   
-  <meta property="og:url" content="uild/posts/coding/day-11-building-python-dns-server/">
+  <meta property="og:url" content="uild/posts/coding/day-14-fixing-a-useless-dns-cache/">
   <meta property="og:site_name" content="Steve Sansford">
-  <meta property="og:title" content="Day #11: Building a DNS Server with Python">
+  <meta property="og:title" content="Day #14: Fixing a Useless DNS Cache">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-11-18T16:08:52-05:00">
-    <meta property="article:modified_time" content="2024-11-18T16:08:52-05:00">
-    <meta property="article:tag" content="#100DaysOfCoding">
+    <meta property="article:published_time" content="2025-01-04T19:35:28-05:00">
+    <meta property="article:modified_time" content="2025-01-04T19:35:28-05:00">
+    <meta property="article:tag" content="#100DayaOfCoding">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Day #11: Building a DNS Server with Python">
+  <meta name="twitter:title" content="Day #14: Fixing a Useless DNS Cache">
 
   
   <script type="application/ld+json">
@@ -117,26 +117,26 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Posts",
-    "name": "Day #11: Building a DNS Server with Python",
-    "headline": "Day #11: Building a DNS Server with Python",
+    "name": "Day #14: Fixing a Useless DNS Cache",
+    "headline": "Day #14: Fixing a Useless DNS Cache",
     
     
     "inLanguage": "en",
-    "url" : "uild\/posts\/coding\/day-11-building-python-dns-server\/",
+    "url" : "uild\/posts\/coding\/day-14-fixing-a-useless-dns-cache\/",
     "author" : {
       "@type": "Person",
       "name": "Steve Sansford"
     },
-    "copyrightYear": "2024",
-    "dateCreated": "2024-11-18T16:08:52-05:00",
-    "datePublished": "2024-11-18T16:08:52-05:00",
+    "copyrightYear": "2025",
+    "dateCreated": "2025-01-04T19:35:28-05:00",
+    "datePublished": "2025-01-04T19:35:28-05:00",
     
-    "dateModified": "2024-11-18T16:08:52-05:00",
+    "dateModified": "2025-01-04T19:35:28-05:00",
     
-    "keywords": ["#100DaysOfCoding"],
+    "keywords": ["#100DayaOfCoding"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1929"
+    "wordCount": "579"
   }
   </script>
     
@@ -159,7 +159,7 @@
      },
      {
        "@type": "ListItem",
-       "name": "Day #11 Building a DNS Server With Python",
+       "name": "Day #14 Fixing a Useless DNS Cache",
        "position": 3
      }
    ]
@@ -441,7 +441,7 @@
     <header class="max-w-prose">
       
       <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        Day #11: Building a DNS Server with Python
+        Day #14: Fixing a Useless DNS Cache
       </h1>
       
         <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -477,7 +477,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-11-18 16:08:52 -0500 EST">18 November 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">10 mins</span>
+      <time datetime="2025-01-04 19:35:28 -0500 EST">4 January 2025</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">3 mins</span>
     
 
     
@@ -495,120 +495,41 @@
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       
       <div class="min-h-0 min-w-0 max-w-prose grow">
-        <p>This has been an excellent 
+        <p>My plan for today was to create a performance test 
       
-    <a href="uild/posts/coding/day-9-lets-build-a-dns-server/">project for developing my coding skills</a>. So far, I have a working DNS server that listens for incoming DNS requests and returns a response from a local zone file. I also have a DNS resolver that takes a given domain name, does a recursive search through the DNS hierarchy, returns an IP address, and caches the result for future use.</p>
-<p>Both are good programs, but I need to combine the resolver and the server program so that instead of looking to a local zone file (like a nameserver), the DNS server will use its resolver to perform a proper search. Then, I&rsquo;ll have a functional recursive DNS server.</p>
-<p>Look out 8.8.8.8!</p>
-<h2 id="exercise-7-build-a-dns-server" class="relative group">Exercise #7: Build a DNS Server <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#exercise-7-build-a-dns-server" aria-label="Anchor">#</a></span></h2><p>Exercise #7 from the <a href="https://implement-dns.wizardzines.com/" target="_blank" rel="noreferrer">Implementing DNS in a Weekend</a> webzine series I followed to build the resolver is to add server functionality. Then, instead of using a provided domain name, we can send an actual DNS query to the server and return a properly formatted DNS response to the client.</p>
-<p>It was a grind. At least a ten-hour session, maybe longer. I lost track of the time. But I wasn&rsquo;t able to stop, even though I could have used a break many times. I don&rsquo;t recall the exact steps I followed, but I do recall many of the issues I had to overcome. The whole process culminated in a complete &ldquo;re-write&rdquo; near the end.</p>
-<h3 id="figuring-out-the-best-place-to-start" class="relative group">Figuring out the Best Place to Start <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#figuring-out-the-best-place-to-start" aria-label="Anchor">#</a></span></h3><p>I have two functioning programs. I needed to pick one to start from and incorporate the elements of the second. Adding additional functionality to the server program seemed like the logical approach. The issue is everything in the server program is encoded manually, byte by byte.</p>
-<p>The resolver script, on the other hand, makes use of <code>@dataclasses</code> to store our DNS information. It also benefits from <code>struct</code> functions, which make moving strings to and from bytes much simpler than doing it manually. The functions to process the recursive search are also more complicated than anything in the server program.</p>
-<p>I decided it would be best to begin with the resolver and build the server functionality around it. That may not have been correct.</p>
-<h3 id="step-one-replacing-the-supplied-domain-with-a-dns-request" class="relative group">Step One: Replacing the Supplied Domain with a DNS Request <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-one-replacing-the-supplied-domain-with-a-dns-request" aria-label="Anchor">#</a></span></h3><p>It was a simple matter to use <code>socket</code> to create a listener on <code>localhost:5053</code> for the DNS server. Then I could <code>dig @localhost -p 5053</code> and the DNS query would be received by the server.</p>
-<h4 id="problem-1-the-client-sends-dns-querys-as-byte-strings" class="relative group">Problem #1: The Client Sends DNS Querys as Byte Strings <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problem-1-the-client-sends-dns-querys-as-byte-strings" aria-label="Anchor">#</a></span></h4><p>It went downhill right from the beginning. The resolver assumes an input in the form of a simple string (<code>google.com</code>). Our client is sending a complete query as a byte string:</p>
-<pre tabindex="0"><code>b&#39;K\xdb\x01 \x00\x01\x00\x00\x00\x00\x00\x01\x06google\x03com\x00\x00\x01\x00\x01\x00\x00)\x10\x00\x00\x00\x00\x00\x00\x00&#39;
-</code></pre><p>I needed to parse the DNS request from the client to get the information I needed to pass to the resolver function. As the resolver already had a function to parse the response from the upstream nameserver, I thought I&rsquo;d just use that.</p>
-<p>I&rsquo;m not sure I&rsquo;ve recovered from that particular mistake. Remember 
-      
-    <a href="uild/posts/coding/day-8-is-everything-defined-by-bad-choices/">what I said about bad decisions</a>? This started me down the trail of modifying all my perfectly good functions until nothing worked right, and the code base was a mess. But more on that later.</p>
-<p>After my total &ldquo;re-write,&rdquo; I ended up with two similar functions: <code>parse_client_response_packet()</code> and the original, which I renamed to <code>parse_server_response_packet()</code>. While similar, they process the data in different ways.</p>
-<pre tabindex="0"><code>def parse_client_request_packet(data):
-    reader = BytesIO(data)  # allow us to iterate over the bytestring # read header bytes and unpack
-    items = struct.unpack(&#34;!HHHHHH&#34;, reader.read(12))
-    header = DNSHeader(*items)  # build header
-    name = decode_name(reader)  # read the requested URL
-    data = reader.read(4)  # read the bytes containing the type and class
-    
-    # format type and class for question
-    type_, class_ = struct.unpack(&#34;!HH&#34;, data)
-    
-    # build the DNS client question
-    question = DNSQuestion(name, type_, class_)
-
-    return header, question
-</code></pre><p>You can also see the benefit of the <code>struct</code> function in Python. It&rsquo;s simple to pass it a format and a byte string and have it return a list of items we can pass to our <code>DNSHeader</code> object for further processing. We now have populated objects with all the information sent from the client, including the domain name to pass to the resolver.</p>
-<h3 id="step-two-resolve-the-domain-name" class="relative group">Step Two: Resolve the Domain Name <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-two-resolve-the-domain-name" aria-label="Anchor">#</a></span></h3><p>Thanks to our function above, we now have the information we need to submit to our existing resolver function:</p>
-<pre tabindex="0"><code>ip_address, ttl = resolve(dns_question.name, dns_question.type_)
-</code></pre><p>It requires two arguments: the domain name and the record type. Both of these are contained in our <code>dns_question</code> object. The resolver returns the <code>ip_address</code> and the <code>ttl</code>.</p>
-<p>I want to dive further into the functionality of the resolver, but I&rsquo;m honestly not clear on how it worked before the rewrite. It could benefit from its own post (and maybe it&rsquo;ll get one or seventeen). But I am clear on the problems I had getting it to work.</p>
-<h4 id="problems-with-the-resolver" class="relative group">Problems with the Resolver <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#problems-with-the-resolver" aria-label="Anchor">#</a></span></h4><p>It was really one problem. I was trying to pass bytes of data to functions that were designed to work with strings. It was a mess. I&rsquo;d just spent the last hour or so messing them up even more, trying to parse the request byte string. My functions weren&rsquo;t processing anything correctly.</p>
-<p>I also struggled to understand the problem with the byte strings because I couldn&rsquo;t read them. I know the problem stemmed from working with DNS client/server communications in bytes but storing and manipulating the data in my data classes, which use integers and strings.</p>
-<p>All the back-and-forth conversion was a disaster. After four hours of banging my head against the wall, I needed a new plan. And some help.</p>
-<h3 id="step-three-the-rewrite-and-chatgpt" class="relative group">Step Three: The Rewrite (and ChatGPT) <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-three-the-rewrite-and-chatgpt" aria-label="Anchor">#</a></span></h3><p>I had a sense of the problem. I know it was caused because I approached the integration wrong. I needed to unify the two sections in bytes. That meant I needed a method to convert my data classes into bytes. That would make it easier to populate them with the parsed DNS data and vice versa.</p>
-<h4 id="modify-the-dataclasses-with-a-__bytes__-method" class="relative group">Modify the Dataclasses with a <strong>bytes</strong> method <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#modify-the-dataclasses-with-a-__bytes__-method" aria-label="Anchor">#</a></span></h4><p>I had been consulting with ChatGPT while researching data storage methods for my cache. When I asked it how to serialize a custom data class object in Python for file storage, it suggested using <code>pickle</code> and storing the data as a byte string.</p>
-<p>That is fine for file storage, but the problem when I applied the same process in an effort to convert my class objects into byte string was that <code>pickle</code> also includes the information necessary to deserialize the object, which results in a byte string that is completely useless.</p>
-<p>When I asked ChatGPT about this issue, it agreed that <code>pickle</code> is not the right choice:</p>
+    <a href="uild/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/">module for ZonePy</a>. I thought it would be neat if there was a module built into the program triggered by a command line flag. When activated, it would run through a list of provided domains and benchmark the time taken to resolve the domain name.</p>
+<p>I wasn&rsquo;t too far into the testing process when I realized I made a big mistake with my order of operations in the main program. I kept noticing cached records for root servers and name servers.</p>
 <blockquote>
-<p>You&rsquo;re correct that pickle is not suitable for encoding data where the exact structure and byte count matter, such as in DNS response encoding. Instead, you can implement a custom <strong>bytes</strong> method that converts the object to a compact binary format, using Python&rsquo;s struct module or manual encoding.</p>
+<p>This is rather pointless. Why have a cache if you process every domain name recursively anyway?</p>
 </blockquote>
-<p>Ahh&hellip;there it was. The solution to the problem. With ChatGPTs help I was able to add custom <code>__bytes__</code> methods to my <code>dataclasses</code>:</p>
-<pre tabindex="0"><code>@dataclass
-class DNSQuestion:
-    name: str
-    type_: int
-    class_: int
-
-    def __bytes__(self):
-        name_binary = b&#39;&#39;.join(len(label).to_bytes(
-            1, &#39;big&#39;) + label.encode(&#39;utf-8&#39;) for label in self.name.split(&#39;.&#39;))
-        name_binary += b&#39;\x00&#39;
-        return name_binary + struct.pack(&#34;!HH&#34;, self.type_, self.class_)
-</code></pre><p>Now that I had a way to easily convert the <code>dataclasses</code> to bytes, I could proceed with my rewrite.</p>
-<h4 id="starting-back-at-the-beginning" class="relative group">Starting Back at the Beginning <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#starting-back-at-the-beginning" aria-label="Anchor">#</a></span></h4><p>I had the answers I needed, but I had no idea where to use them. I knew the best thing to do would be to start over. Not from a blank file, but from something just as effective. I commented out every line of code in my script and I started from the beginning.</p>
-<p>I don&rsquo;t recall all the changes I made. As I worked my way through the code line by line, I uncommented and updated every line necessary to take advantage of the new classes.</p>
-<p>I only uncommented functions as they were called and never the entire function. Just that part of it that did what I needed. I deleted what seemed like dozens of lines of code. I know several functions were removed completely.</p>
-<p>It took a couple of hours, but starting with a byte string for a <code>google.com</code> DNS request, I verified the response byte string with ChatGPT at every step. I noted where it said the packet was malformed and corrected it. Line by line, I worked through my script.</p>
-<p>When I was done, the server would accept a DNS request from a client and return an IP address to the console. All that was left now was to encode a proper response and return it to the client.</p>
-<h3 id="step-four-building-the-response" class="relative group">Step Four: Building the Response <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-four-building-the-response" aria-label="Anchor">#</a></span></h3><p>There&rsquo;s a better way to do this, but after two solid days of coding, I just wanted to get it working. I attempted to create another <code>dataclass</code> object to contain the response. That would give it a similar structure to the rest of the program, but I couldn&rsquo;t get it to create a properly formed packet. There were errors.</p>
-<p>I took a shortcut and created a proper response using <code>struct</code> and some hard-coded values. This was sufficient to return a proper <code>A</code> record to the client.</p>
-<pre tabindex="0"><code>def build_response(data):
-    dns_header, dns_question = parse_client_request_packet(
-        data)  # parse client DNS request
-    # attempt to resolve the client&#39;s request
-    ip_address, ttl = resolve(dns_question.name, dns_question.type_)
-    name = dns_question.name
-    data = bytes(map(int, ip_address.split(&#39;.&#39;)))
-
-    # Todo:  refactor and remove hardcoded values
-    header = struct.pack(&#34;!HHHHHH&#34;, dns_header.id, 0x8180, 1, 1, 0, 0)
-    question = encode_domain_name(
-        name) + struct.pack(&#34;!HH&#34;, dns_question.type_, dns_question.class_)
-    answer = encode_domain_name(
-        name) + struct.pack(&#34;!HHIH&#34;, dns_question.type_, dns_question.class_, ttl, 4) + data
-
-    return header + question + answer    
-</code></pre><p>The biggest issue I had was encoding the IP address onto the end of the question string. No matter how I tried, <code>dig</code> kept complaining that my response stiring was malformed and contained extra characters.</p>
-<p>I had to ask ChatGPT for help. it provided this gem that was the key to proper encoding:</p>
-<pre tabindex="0"><code> data = bytes(map(int, ip_address.split(&#39;.&#39;)))
-</code></pre><p>Everything up to the <code>#Todo</code> comment is how I want it. The three lines that follow are me building a DNS response using the resolved IP address and some hardcoded integers. I want to rebuild this part of the function to be more dynamic. DNS requests won&rsquo;t always be for a single <code>A</code> record. There is more work to do.</p>
-<h3 id="step-five-resolving-a-dns-query" class="relative group">Step Five: Resolving a DNS Query <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-five-resolving-a-dns-query" aria-label="Anchor">#</a></span></h3><p>Success at last. I started the server and sent it a query from my terminal using:</p>
-<pre tabindex="0"><code>dig @localhost -p 5053 google.com
-</code></pre><p>The response was exactly what I wanted to see:</p>
-<pre tabindex="0"><code>; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; @localhost -p 5053 google.com
-; (2 servers found)
-;; global options: +cmd
-;; Got answer:
-;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 46520
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
-
-;; QUESTION SECTION:
-;google.com.			IN	A
-
-;; ANSWER SECTION:
-google.com.		300	IN	A	142.250.191.238
-
-;; Query time: 185 msec
-;; SERVER: 127.0.0.1#5053(127.0.0.1)
-;; WHEN: Mon Nov 18 19:19:12 EST 2024
-;; MSG SIZE  rcvd: 54
-</code></pre><p>A perfectly formed DNS response from 
+<p>Upon further investigation, I discovered that while the cache was being used, it was being used as part of the recursive search. This means ZonePy was decoding the DNS request, finding the domain needed, and then launching into its recursive search process, whereupon it began to check the local cache before making an upstream request.</p>
+<p>This is rather pointless. Why have a cache if you process every domain name recursively anyway?</p>
+<h3 id="order-of-operations-matters" class="relative group">Order of Operations Matters <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#order-of-operations-matters" aria-label="Anchor">#</a></span></h3><p>The issue is that I need the program to check the cache earlier. As soon as the DNS request is decoded and we know the domain that was asked for, ZonePy needs to check the cache immediately and return any unexpected IP address that it has stored.</p>
+<p>I reworked the order of the program&rsquo;s functions. It wasn&rsquo;t a complicated process. I changed the code to include the cache check in the main program loop.</p>
+<p>This is the corrected code:</p>
+<pre tabindex="0"><code>while True:  # listen for incoming requests
+    data, addr = sock.recvfrom(512)  # receive DNS request from client
+    start_time = time.perf_counter()  # start the clock
+    logging.debug(f&#34;DNS request received from {addr[0]}&#34;)
+    header, question = parse_client_request_packet(data)  # parse client DNS request
+    logging.debug(f&#34;Checking cache for {question.name}&#34;)
+    if cached_record := check_cache(question.name, question.type_):
+        response = create_return_packet(header, question, cached_record[0], cached_record[1])
+        elapsed_time = round((time.perf_counter() - start_time) * 1000)
+        logging.info(f&#34;Cached record found for {question.name} in {elapsed_time}ms&#34;)
+    else:
+        logging.debug(f&#34;No Cached record found for {question.name}&#34;)
+        resolved_record = resolve(question.name, question.type_)
+</code></pre><p>Now, ZonePy will check the local cache as soon as it knows what domain has been requested. The IP address for a cached domain is now returned within 1-3ms. A significant performance improvement already covers the 400-600ms it was taking before, as every call was resolved recursively, with a cache check at each hop.</p>
+<blockquote>
+<p>I&rsquo;ll revisit an optimized cache solution in the future.</p>
+</blockquote>
+<p>I&rsquo;m not sure how I got that mixed up, but the main thing is it&rsquo;s fixed now. I still want to explore other caching options besides a simple text file, but there are many more important tasks that need to be completed that will have a much bigger impact on ZonePy&rsquo;s performance. I&rsquo;ll revisit an optimized cache solution in the future.</p>
+<h3 id="no-need-to-reinvent-the-wheel" class="relative group">No Need to Reinvent the Wheel <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#no-need-to-reinvent-the-wheel" aria-label="Anchor">#</a></span></h3><p>Reinventing the wheel can be entertaining and educational, but I realized, in this case, it&rsquo;s unnecessary. I don&rsquo;t need to finish the perf test function I started. I just need to <a href="https://www.grc.com/dns/benchmark.htm" target="_blank" rel="noreferrer">download GRC&rsquo;s excellent DNS Benchmark utility</a>, and it should give me all the information I need to dial in the performance of ZonePy.</p>
+<p>Which I desperately need. Because although it&rsquo;s stable enough to run as 
       
-    <a href="uild/portfolio/">my Python DNS server</a>.</p>
-<p>There is so much more work to do on this project. Plus, I want to create a series of posts going over the function in detail once it&rsquo;s complete. The problem is it might be one of those programs that is never complete. 
-      
-    <a href="uild/posts/coding/day-0-a-brief-history-lesson/">Like a chess engine</a>. A perpetual programming project, good for a lifetime of learning or not. Either way,</p>
-<p>There are only 89 more days to go&hellip;</p>
+    <a href="uild/posts/coding/day-12-an-almost-useable-dns-server/">the primary DNS on my MacBook</a>, it&rsquo;s painfully slow, leading to a lot of timeouts. It is not unexpected, considering there&rsquo;s no optimization like asynchronous requests., but I know I can do better.</p>
+<p>Fortunately for me, I still have 86 more days to go&hellip;</p>
 
       </div>
     </section>
@@ -626,7 +547,7 @@ google.com.		300	IN	A	142.250.191.238
       <div class="flex justify-between pt-3">
         <span>
           
-            <a class="group flex" href="uild/posts/coding/day-10-second-day-dns-python-coding/">
+            <a class="group flex" href="uild/posts/coding/day-13-meet-zonepy-a-python-powered-dns-server/">
               <span
                 class="me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
                 ><span class="ltr:inline rtl:hidden">&larr;</span
@@ -635,11 +556,11 @@ google.com.		300	IN	A	142.250.191.238
               <span class="flex flex-col">
                 <span
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Day #10: My Second Day of DNS Coding in Python</span
+                  >Day #13: Meet ZonePy: A Python-Powered DNS Server</span
                 >
                 <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
                   
-                    <time datetime="2024-11-17 21:51:51 -0500 EST">17 November 2024</time>
+                    <time datetime="2024-11-20 19:01:15 -0500 EST">20 November 2024</time>
                   
                 </span>
               </span>
@@ -647,25 +568,6 @@ google.com.		300	IN	A	142.250.191.238
           
         </span>
         <span>
-          
-            <a class="group flex text-right" href="uild/posts/coding/day-12-an-almost-useable-dns-server/">
-              <span class="flex flex-col">
-                <span
-                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Day #12: An Almost Useable DNS Server</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2024-11-19 20:42:12 -0500 EST">19 November 2024</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
-                ><span class="ltr:inline rtl:hidden">&rarr;</span
-                ><span class="ltr:hidden rtl:inline">&larr;</span></span
-              >
-            </a>
           
         </span>
       </div>

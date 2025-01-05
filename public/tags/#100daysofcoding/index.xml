@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>#100DaysOfCoding on Steve Sansford</title>
-    <link>https://stevesansford.com/tags/%23100daysofcoding/</link>
+    <link>uild/tags/%23100daysofcoding/</link>
     <description>Recent content in #100DaysOfCoding on Steve Sansford</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 19 Nov 2024 20:42:12 -0500</lastBuildDate>
-    <atom:link href="https://stevesansford.com/tags/%23100daysofcoding/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="uild/tags/%23100daysofcoding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Day #12: An Almost Useable DNS Server</title>
-      <link>https://stevesansford.com/posts/coding/day-12-an-almost-useable-dns-server/</link>
+      <link>uild/posts/coding/day-12-an-almost-useable-dns-server/</link>
       <pubDate>Tue, 19 Nov 2024 20:42:12 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-12-an-almost-useable-dns-server/</guid>
+      <guid>uild/posts/coding/day-12-an-almost-useable-dns-server/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #11: Building a DNS Server with Python</title>
-      <link>https://stevesansford.com/posts/coding/day-11-building-python-dns-server/</link>
+      <link>uild/posts/coding/day-11-building-python-dns-server/</link>
       <pubDate>Mon, 18 Nov 2024 16:08:52 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-11-building-python-dns-server/</guid>
+      <guid>uild/posts/coding/day-11-building-python-dns-server/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #10: My Second Day of DNS Coding in Python</title>
-      <link>https://stevesansford.com/posts/coding/day-10-second-day-dns-python-coding/</link>
+      <link>uild/posts/coding/day-10-second-day-dns-python-coding/</link>
       <pubDate>Sun, 17 Nov 2024 21:51:51 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-10-second-day-dns-python-coding/</guid>
+      <guid>uild/posts/coding/day-10-second-day-dns-python-coding/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #9: Let&#39;s Build a DNS Server!</title>
-      <link>https://stevesansford.com/posts/coding/day-9-lets-build-a-dns-server/</link>
+      <link>uild/posts/coding/day-9-lets-build-a-dns-server/</link>
       <pubDate>Sat, 16 Nov 2024 23:16:10 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-9-lets-build-a-dns-server/</guid>
+      <guid>uild/posts/coding/day-9-lets-build-a-dns-server/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #8: Is Everything Defined by Bad Decisions?</title>
-      <link>https://stevesansford.com/posts/coding/day-8-is-everything-defined-by-bad-choices/</link>
+      <link>uild/posts/coding/day-8-is-everything-defined-by-bad-choices/</link>
       <pubDate>Fri, 15 Nov 2024 23:01:57 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-8-is-everything-defined-by-bad-choices/</guid>
+      <guid>uild/posts/coding/day-8-is-everything-defined-by-bad-choices/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #7: Increasing the Difficulty Level</title>
-      <link>https://stevesansford.com/posts/coding/day-7-increasing-the-difficulty-level/</link>
+      <link>uild/posts/coding/day-7-increasing-the-difficulty-level/</link>
       <pubDate>Thu, 14 Nov 2024 20:01:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-7-increasing-the-difficulty-level/</guid>
+      <guid>uild/posts/coding/day-7-increasing-the-difficulty-level/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #6: Programming and Coding Are Different</title>
-      <link>https://stevesansford.com/posts/coding/day-6-programming-and-coding-are-different/</link>
+      <link>uild/posts/coding/day-6-programming-and-coding-are-different/</link>
       <pubDate>Wed, 13 Nov 2024 10:10:38 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-6-programming-and-coding-are-different/</guid>
+      <guid>uild/posts/coding/day-6-programming-and-coding-are-different/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #5: I&#39;m Finally Caught Up...I Think</title>
-      <link>https://stevesansford.com/posts/coding/day-5-im-finally-caught-up/</link>
+      <link>uild/posts/coding/day-5-im-finally-caught-up/</link>
       <pubDate>Tue, 12 Nov 2024 21:26:17 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-5-im-finally-caught-up/</guid>
+      <guid>uild/posts/coding/day-5-im-finally-caught-up/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #4: I Got Distracted by Hugo!</title>
-      <link>https://stevesansford.com/posts/coding/day-4-i-got-sidetracked-by-hugo/</link>
+      <link>uild/posts/coding/day-4-i-got-sidetracked-by-hugo/</link>
       <pubDate>Mon, 11 Nov 2024 16:33:56 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-4-i-got-sidetracked-by-hugo/</guid>
+      <guid>uild/posts/coding/day-4-i-got-sidetracked-by-hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #3: The Value of Coding Challenges</title>
-      <link>https://stevesansford.com/posts/coding/day-3-the-value-of-coding-challenges/</link>
+      <link>uild/posts/coding/day-3-the-value-of-coding-challenges/</link>
       <pubDate>Sun, 10 Nov 2024 02:53:00 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-3-the-value-of-coding-challenges/</guid>
+      <guid>uild/posts/coding/day-3-the-value-of-coding-challenges/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #2: Coding Tutorials vs. Actually Coding</title>
-      <link>https://stevesansford.com/posts/coding/day-2-coding-tutorials-vs-actually-coding/</link>
+      <link>uild/posts/coding/day-2-coding-tutorials-vs-actually-coding/</link>
       <pubDate>Sat, 09 Nov 2024 02:52:35 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-2-coding-tutorials-vs-actually-coding/</guid>
+      <guid>uild/posts/coding/day-2-coding-tutorials-vs-actually-coding/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #1: Laying the Groundwork</title>
-      <link>https://stevesansford.com/posts/coding/day-1-laying-the-groundwork/</link>
+      <link>uild/posts/coding/day-1-laying-the-groundwork/</link>
       <pubDate>Fri, 08 Nov 2024 02:52:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-1-laying-the-groundwork/</guid>
+      <guid>uild/posts/coding/day-1-laying-the-groundwork/</guid>
       <description></description>
     </item>
     <item>
       <title>Day #0: A Brief History Lesson</title>
-      <link>https://stevesansford.com/posts/coding/day-0-a-brief-history-lesson/</link>
+      <link>uild/posts/coding/day-0-a-brief-history-lesson/</link>
       <pubDate>Thu, 07 Nov 2024 02:52:13 -0500</pubDate>
-      <guid>https://stevesansford.com/posts/coding/day-0-a-brief-history-lesson/</guid>
+      <guid>uild/posts/coding/day-0-a-brief-history-lesson/</guid>
       <description></description>
     </item>
   </channel>
